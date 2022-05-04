@@ -8,11 +8,7 @@ import {
 	sendAndConfirmTransaction,
 	PublicKey,
 } from "@solana/web3.js";
-// import { createMint } from '@solana/spl-token';
 
-const INT_BAL = 0;
-const SEED_PHARSE =
-	"water add october bulb siege ozone thunder surge scan auction post ordinary";
 const CONST_SECRET_KEY =
 	"oSEu38GxfcjeL2Bu3zfWFPYxw5arHM1DRrjoUK5hrZGF5g1ikiFBGS5BSBpA63y84EkJ8TJQCRYma19cnLx9evy";
 export const createConnection = async () => {
@@ -22,6 +18,7 @@ export const createConnection = async () => {
 export const createAccount = async () => {
 	const keyPair = Keypair.generate();
 	const bal = await getBalance(keyPair.publicKey);
+	console.log(keyPair.publicKey);
 	return {
 		keyPair: keyPair,
 		publicKey: keyPair.publicKey,
@@ -30,29 +27,17 @@ export const createAccount = async () => {
 	};
 };
 
-export const addAccountFromSeed = async (seed) => {
-	const KPL_SEED = [
-		"water",
-		"add",
-		"october",
-		"bulb",
-		"siege",
-		"ozone",
-		"thunder",
-		"surge",
-		"scan",
-		"auction",
-		"post",
-		"ordinary",
-	];
+export const addAccountFromSeed = async () => {
 
-	const keyPair = Keypair.fromSeed(KPL_SEED);
-	const bal = await this.getBalance(keyPair.publicKey);
+	const key = [142,239,100,185,37,125,157,136,42,222,49,116,27,242,61,61,156,176,191,186,66,36,156,32,117,115,164,118,87,210,248,26,210,140,210,161,149,252,179,45,156,239,28,53,91,120,241,5,9,213,82,236,63,174,226,203,104,244,245,90,133,249,93,181];
+	const keyPair = Keypair.fromSecretKey(Uint8Array.from(key));
+	console.log(keyPair.publicKey);
+	// const bal = await this.getBalance(keyPair.publicKey);
 	return {
 		keyPair: keyPair,
 		publicKey: keyPair.publicKey,
 		secretKey: keyPair.secretKey.subarray,
-		balance: bal,
+		balance: 0,
 	};
 };
 

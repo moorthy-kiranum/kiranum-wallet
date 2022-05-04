@@ -11,7 +11,7 @@ export const Transaction = (props) => {
                 overflowY:"hidden"
             }}>
 				{
-					signature.length==0 && <div>No Recent Transaction</div>
+					signature.length===0 && <div>No Recent Transaction</div>
 				}
 				{signature.length>0 && signature.map((e, i) => {
 					return (

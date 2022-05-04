@@ -1,7 +1,6 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Card } from "@mui/material";
 import {
-	BrowserRouter as Router,
 	Route,
 	Routes,
 	useNavigate,
@@ -19,7 +18,6 @@ import * as tokenService from "../service/wallet/wallet-service";
 import { Settings } from "./Settings/Settings";
 
 export function Home() {
-	const AccountContext = createContext();
 
 	const navigate = useNavigate();
 
@@ -43,6 +41,14 @@ export function Home() {
 		setBalance(sol.toFixed(4));
 		console.log("Fetched Balance...");
 	};
+
+	const addAccount = async () =>{
+		console.log("Creating Account...");
+		const acc = await tokenService.addAccountFromSeed();
+		setAccount(acc);
+		console.log(acc);
+		console.log("Account Created...");
+	}
 
 	useEffect(() => {
 		createAccount();
