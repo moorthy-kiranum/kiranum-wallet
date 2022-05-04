@@ -9,8 +9,7 @@ export const Transaction = (props) => {
 	return (
 		<Grid variant="outlined" m={1} sx={{ p: 2,overflowY:"scroll", }}>
 			<Grid direction="row" sx={{
-                overflowY:"hidden",
-                backgroundColor:"green"
+                overflowY:"hidden"
             }}>
 				{signature.map((e, i) => {
 					return (
