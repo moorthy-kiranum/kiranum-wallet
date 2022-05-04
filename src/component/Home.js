@@ -29,7 +29,7 @@ export function Home() {
 
 	const createAccount = async () => {
 		console.log("Creating Account...");
-		const acc = await tokenService.createAccount();
+		const acc = await tokenService.addAccountFromSeed();
 		setAccount(acc);
 		console.log("Account Created...");
 	};

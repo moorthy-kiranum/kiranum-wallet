@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { LAMPORTS_PER_SOL ,PublicKey} from "@solana/web3.js";
 import { Grid, Typography, TextField, Button } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
@@ -110,6 +110,16 @@ export const Account = (props) => {
 		util.downloadFile(account?.secretkey);
 	};
 
+
+	let address;
+
+	if(account){
+   		const addressKeyPair = new PublicKey(account.publicKey)
+			address = addressKeyPair.toBase58();
+			console.log("address", address);
+			// tokenService.getTokensByAccount(account.publicKey);
+	}
+
 	useEffect(() => {
 		getBalance();
 	}, []);
@@ -120,7 +130,7 @@ export const Account = (props) => {
 			<Grid variant="outlined" m={1} sx={{ p: 2 }}>
 				<Grid container spacing={1} direction="column">
 					<Typography sx={{ overflow: "hidden", border: 1 }}>
-						{account?.publicKey.toString()}
+						{address}
 						<Button
 							startIcon={<ContentPasteTwoToneIcon />}
 							onClick={handleClipBoard}
